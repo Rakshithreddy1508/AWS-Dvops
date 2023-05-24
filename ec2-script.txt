@@ -5,3 +5,14 @@ yum install httpd -y
 systemctl start httpd
 systemctl enable httpd
 echo "</h> hii from $(hostname -f)</h1>" >/var/www/html/index.html
+
+
+
+#!/bin/bash
+#install httpd -y
+yum update -y
+yum install httpd -y
+systemctl enable httpd
+systemctl start httpd
+echo "</h> hello from $(hostname -f)</h1>" >/var/www/html/index.html
+
