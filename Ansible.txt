@@ -1,0 +1,81 @@
+								ANSIBLE PROCEDURE
+Ansible is configuration tool, which is used to configure all the servers (like we have 100 client server) at a time by using one master servers
+For this ansible we need SSH configurations..
+     FOR example:  we have One MASTER SERVER AND 5 Client severe 
+      Create An 6 EC2-SERVERS with linux OS(AMI) , in those 1-Sever is MASTER SERVER
+	  Connect to all servers
+	  Create Username : ansadmin  and Passwd : **** to all the servers
+	   goto cofiguration : visudo --> under withoutpasswd authentication add --> ansadmin 	ALL=(ALL)	NOPASSWD: ALL --> wq! 
+	                     : vi /etc/ssh/sshd_config --> make uncoomint the passwd authentication (just remove #) --> wq! --> service sshd restart
+                         : Do this process for all the servers...
+
+        Now login to master server and connet all servers using SSH-Key gen , login to user (su - ansadmin)
+                                                  : SSH-KEYGEN 
+												  : ssh-copy-id (public ip of each serever) one time it will ask passwd enter it and get connect 
+												  :now goto root user and install ansible tool
+												  : sudo dnf install -y ansible-core (for linux AMI )
+												  : check weather ansible is installed (ansible --version)
+												  : now goto cd /etc/ansible --> ll --> vi hosts --> add all the ip address of client servers 
+												  : like Webserver:(ips of some servers) and Dbserver:(ips of some server) --> wq!
+												  : under ansible-config -->> we can change path and forks (forks is used to configure as sets/per)
+												  login to user ansadmin
+							There are 2 types to execute in clinte server 
+								1. AD-HOC Method
+								2. Playbook method
+                                                  AD-HOC method follows:									 
+									PING MODULE : ansible all -m ping --> ping pong connection runs 
+									SHELL MODULE : ansible all -m shell -a "uptime" -->> displays time 	
+									COPY MODULE : ansible all -m copy -a "src=/Desktop/ABCD dest=/mnt" -b	ABCD file copied to /mnt directory
+									File MODULE : ansible all -m file -a "path=/ansadmin/Reddy state=touch" -b  --> FIle Reddy created at ansadmin 
+									DIR  MODULE : ansible all -m file -a "path=/ansadmin/Reddy state=mkdir" -b --> Dir Reddy created at ansadmin
+									FETCH MODULE : ansible all -m fetch -a "src=/ansadmin/ABCD dest=/tmp" -b --> ABCD File downloaded to /tmp 
+									InSTALLATION : ansible all -m yum -a "name=httpd state=installed" -b --> installed Httpd in all servers
+									SERVICE : ansible all -m service -a "name=httpd state=started" -b --> started service to  Httpd in all servers											
+									 for installation State = installed , latest , present we can use 
+									 for removing or deleteing : absent 
+									 for service : started , stopped , restart
+									        
+											       PLAYBOOK METHOD follows:
+									This method is used by writing code manually in YAML format 
+									TO write code Visual studio code is best
+										Example : Client requirment : to install and service enable appace  to all servers 
+										            write a code and ececute 
+													create a file vi pakg.yml and add the code written at visual studio code
+                                    code as follows: 
+                                                     ---	(indication of yaml file)								
+									                  - name: installing and service enabling appache to all server 
+														hosts: all 
+														become: yes
+														gather_facts : false
+														tasks:
+														- yum: "name=httpd state=installed/latest/present"
+														- service: "name=httpd state=started"
+						Note : Inside playbook we can write 'n'no of plays and in plays we can write 'n' no tasks 
+														now goto master server and run to execute 
+														ansible-playbook pakg.yml --> installation and service enable done to all servers 
+									if there is any errors in code means it will dispaly at execution line no of code to reectify 
+                           SOME MODULE IN PLAYBOOK AS FOLLOWS BELOW:-->>
+							DEBUG MODULE : ---
+							                - name: 
+											  hosts: all  
+											  become: yes
+											  tasks:
+											  - shells: "bash --version"
+									            register: "bash_ver"
+											  - debug : "var="bash_ver.stdout.split("/n")[0].split()[3]
+											  
+												
+												
+										---
+										 - name:
+										   hosts:
+										   become: yes
+										   vars:
+										      x:
+											  y:
+										   tasks:
+                                           - debug:
+                                               msg:
+                                                - "the value of x: {{x}}"
+											    - "the value of y: {{y}}"	
+												 - "{{x}}+{{y}}={{x+y}}"

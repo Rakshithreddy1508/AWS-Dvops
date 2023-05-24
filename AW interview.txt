@@ -1,0 +1,55 @@
+aws:
+61.what is aws
+Aws is an Amazon web services , it is the one of the cloud service which is offered by Amazon,which deals with services and servers with ondemand service like database,compute,storage,security and many other services
+
+62.which services have u used in aws
+I have used most of the services in aws,its Based on client request we use the services like creation of EC2,VPC,ASG,ELB,EBS and mointering tools like cloudwatch , cloud front SNS these are the some of the services i have used
+
+63.can do you resize instance type
+yes, we can resize the instance type , the steps foolowed to resize the instance type is as follows : Goto EC2 =>select the server which we want to resize => actions => instance setting => chang instance type => change the instance type and apply 
+
+64.can u decresae volume size
+No, its Not possible to decrese the vol size , if we want to increase we can increase the vol size and vol type in AWS
+
+65.what is snapshot
+Snapshot are a type of photocopy, which turns as a backup of EBS vol.It take a copy of EBS vol data , and we can recover the data which is stored as snapshot to any region across our aws services. 
+
+
+66.what is diff b.w volumes and s3
+EBS volume are block level storge data which can be used for virtual machines or servers to store files, the data which has stored in EBS vol will not be accessable through internet. 
+S3 is a Simple storage service which stores data as a bucket and object level data storage . The data stored in S3 can be accessable anywhere through internet.
+
+67.what is load balancers
+Load Balancer is an AWS service which is offered by Amazon. load balancers are used to controll the traffic recieving from users and distributes the load equally to the users where they cannot get any distructions whie using any services through internet.
+
+68.different types of load balancers
+the types of Load Balancers are
+Classic load balancer => it is an old one at present this service is not using by aws
+Application Load Balancer => deals on HTTP And HTTPS service its an layer 7
+Network load balancer => deals with tcp/udp , its a layer 4
+gateway load Balancer => 
+
+69.what is autoscaling
+ASG is an service used by aws which is used to auto scaleup or scaledown automatically for our instances based on there traffic and workload used by the servers.
+ASG is a service which can be used to increase or decrease the instances based on ther work load and traffic. in these service we can set to control automatically to decrease the instance whe our work load is low , as well as to increase the instance when workflow or traffic is high
+
+70.why we have to implement autoscaling
+Which will helps us to auto scaleup and scaledown service automatically  
+
+71.what is iam
+IAM is Identity access management , Which is used to manage users and their level access in organisations.
+
+72.wht is ami
+AMI is Amazon Machine Image ,It is a templet which contains system configuration which is used while lauching instances.
+In AMI we can install all the requirment os and we create as a image and we can use it while lauching instance.
+
+73.what is elastic IP
+Elastic IP is also called as static ip which is used for keeping our public ip as fixed ip , By using elastic ip our public ip never change even when we stop or start our instance 
+
+74.what is VPC
+Vpc is an Virtual private cloud ,It is most secure srvice in aws.
+Vpc is an private network where we can secure our server from Hackers, threats and etc...
+Vpc deals as a networking for our servers where we can control our traffic and security for instances 
+
+75.Different versions of tools
+

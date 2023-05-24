@@ -1,0 +1,24 @@
+variable "Vpc_cidr_block" {
+default = "10.0.0.0/16"
+description = "VPC-CIDR"
+type = "string"
+}
+
+variable "Vpc_Name" {
+default = "vpc-A"
+description = "VPC-Name"
+type = "string"
+}
+
+variable "Public-subnet-cidr-block" {
+default = "10.0.0.0/24"
+description = "public-subnet-CIDR"
+type = "string"
+}
+
+variable "Public-subnet-name" {
+default = "Public-subnet-1"
+description = "Public-subnet-Name"
+type = "string"
+}
+
